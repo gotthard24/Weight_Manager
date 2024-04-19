@@ -3,7 +3,7 @@ const userModel = require("../models/userModel.js");
 
 module.exports = {
   registerUser: async (req, res) => {
-    const { username, password, email, height, weight, age, activity, goal_weight, goal_time} = req.body;
+    const { username, password, email, height, weight, age, gender, activity, goal_weight, goal_time} = req.body;
 
     const user = {
       username,
@@ -12,6 +12,7 @@ module.exports = {
       height,
       weight,
       age,
+      gender,
       activity,
       goal_weight,
       goal_time,
@@ -114,6 +115,44 @@ module.exports = {
     try {
       await userModel.updateGoalById(userId, updatedDetails);
       res.json({ message: "Details updated successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  },
+  getAllRecipes: async (req, res) => {
+    try {
+      const recipes = await userModel.getAllRecipes();
+      res.json(recipes);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  },
+  getAllIngredients: async (req, res) => {
+    try {
+      const ingredients = await userModel.getAllIngredients();
+      res.json(ingredients);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  },
+  calculateForUserById: async (req, res) => {
+    const userId = req.params.id;
+    try {
+      const calories = await userModel.calculateForUserById(userId);
+      res.json(calories);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  },
+  getDailyRationById: async (req, res) => {
+    const userId = req.params.id;
+    try {
+      const ration = await userModel.getDailyRationById(userId);
+      res.json(ration);
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });
