@@ -91,7 +91,7 @@ async function updateUserById(id, updatedUser) {
     if (userpassword) {
       // Hash the password and insert it into the 'hashpwd' table
       const password = await bcrypt.hash(userpassword + "", 10);
-      await db("hashpwd").where({ userid: id }).update({ password });
+      await db("passwords").where({ userid: id }).update({ password });
     }
   } catch (error) {
     throw error;

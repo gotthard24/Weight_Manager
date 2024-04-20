@@ -11,6 +11,9 @@ app.use("/", express.static(__dirname + "/public"));
 // Use user routes
 app.use("/api", userRoutes);
 
+app.get('/', (req, res)=>{
+  res.sendfile('index.html')
+})
 // Start the server
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
