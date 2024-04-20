@@ -123,27 +123,75 @@ function change(e) {
     doc.getElementById('update').style.display='flex'
 }
 async function getMeals(e) {
+    let count = 1
+    let recipe
+    const mainroot = doc.getElementById('mainroot')
     e.preventDefault()
     doc.getElementById('getMeals').style.display='none'
+    mainroot.style.display='flex'
 
+    
+    
     const root = doc.getElementById('root')
     const rationEndpoint = `/users/ration/${currentUser}`
     const ration = await get(rationEndpoint)
-
+    let arrayMealId=[]
     ration.ration.forEach(meal => {
-        let newDiv = doc.createElement('div');
-        let img = doc.createElement('img')
-        img.src = meal.image;
-        newDiv.innerHTML = meal.summary;
-        newDiv.appendChild(img)
-        root.appendChild(newDiv);
-    });
-    console.log(ration);
-
+      arrayMealId.push(meal.id)
+      if(meal.instructions.length>0){
+        doc.getElementById(`recipe${count}`).innerHTML+=`<div class="recipeInfo">
+        <h3>${count}.${meal.title}</h3>
+        <div class="ingredientsAndImage">
+        <img class="recipeImage" width="35%" src="${meal.image}">
+        <div id="ingredients${count}"><h3>Ingredients:</h3></div>
+        </div>
+        <h3>Instructions:</h3>
+        <p>${meal.instructions}</p>
+        <button class="backButton" onclick="backToMain(event)">Back</button>
+        </div>`
+        root.innerHTML+=`<div class="meals">
+        <h3>${count}.${meal.title}: ${meal.calories} cal</h3>
+        <img class="recipeImage" width="100%" src="${meal.image}">
+        <button class="recipeButton" onclick="getInfo${count}(event)">Get full recipe info</button>
+        </div>`
+      
+      } else{
+        doc.getElementById(`recipe${count}`).innerHTML+=`<div class="recipeInfo">
+        <h3>${count}.${meal.title}</h3>
+        <div class="ingredientsAndImage">
+        <img class="recipeImage" width="30%" src="${meal.image}">
+        <div id="ingredients${count}"><h3>Ingredients:</h3></div>
+        </div>
+        <h3>Instructions:</h3>
+        <p>${meal.summary}</p>
+        <button class="backButton" onclick="backToMain(event)">Back</button>
+        </div>`
+        root.innerHTML+=`<div class="meals">
+        <h3>${count}.${meal.title}: ${meal.calories} cal</h3>
+        <img class="recipeImage" width="100%" src="${meal.image}">
+        <button class="recipeButton" onclick="getInfo${count}(event)">Get full recipe info</button>
+        </div>`
+        
+      }
+      count++ 
+  });
+    let countIds = 1
+    for (item of arrayMealId){
+      let countIng = 1
+      let ingredientEndpoint = `/ingredients/${item}`
+      let ingredient = await get(ingredientEndpoint)
+      for (item of ingredient){
+        doc.getElementById(`ingredients${countIds}`).innerHTML+=`<div><span class="numbers">${countIng}:</span> ${item.amount} ${item.unit} of ${item.name}<div>`
+        countIng++
+      }
+      
+      countIds++
+    }
+    
     let newDiv = doc.createElement('div');
-    newDiv.innerHTML = `<p> After those 3 meals you have ${ration.remainingCalories} more calories 
+    newDiv.innerHTML = `<p style="margin-top:10px;"> After those 3 meals you have <span id="kcal3">${Math.floor(ration.remainingCalories)}</span> more calories 
     Which you can fill with fruits, sweets or any other food at your desire</p>`;
-    root.appendChild(newDiv);
+    mainroot.appendChild(newDiv);
 }
 
 async function post(body, endpoint) {
@@ -214,6 +262,35 @@ async function mainInfoUpdate(){
     userDetails = detailsResponse
     userCalLimit = caloriesResponse
 
-    doc.getElementById('usernameN2').innerHTML = ` ${username}`
-    doc.getElementById('kcal2').innerHTML = ` ${userCalLimit} cal`
+    doc.getElementById('usernameN2').innerHTML =`${username}`
+    doc.getElementById('kcal2').innerHTML =`${userCalLimit} cal`
+}
+
+function getInfo1(e) {
+  const mainroot = doc.getElementById('mainroot')
+  const recipe = doc.getElementById('recipe1')
+  mainroot.style.display="none"
+  recipe.style.display='flex'
+}
+function getInfo2(e) {
+  const mainroot = doc.getElementById('mainroot')
+  const recipe = doc.getElementById('recipe2')
+  mainroot.style.display="none"
+  recipe.style.display='flex'
+}
+function getInfo3(e) {
+  const mainroot = doc.getElementById('mainroot')
+  const recipe = doc.getElementById('recipe3')
+  mainroot.style.display="none"
+  recipe.style.display='flex'
+}
+function backToMain(e) {
+  const mainroot = doc.getElementById('mainroot')
+  const recipe1 = doc.getElementById('recipe1')
+  const recipe2 = doc.getElementById('recipe2')
+  const recipe3 = doc.getElementById('recipe3')
+  recipe1.style.display='none'
+  recipe2.style.display='none'
+  recipe3.style.display='none'
+  mainroot.style.display="flex"
 }

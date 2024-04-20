@@ -21,7 +21,8 @@ body{
 }
 h1{
     font-size: 40px;
-    font-weight: 800;
+    font-weight: 900;
+    color:rgba(32, 172, 4, 0.737);
 }
 h2{
     font-size: 28px;
@@ -101,19 +102,33 @@ input{
     flex-direction: column;
     align-items: center;
     margin: 10px auto;
-    width: 400px;
-
+    width: 600px;
+}
+#mainroot{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px auto;
+    width: 600px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
 }
 nav{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 10px;
     gap: 10px;
+    width: 100%;
 }
 #root{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    max-height: 300px;
     width: 600px;
+    overflow-y:hidden;
+    margin: auto;
+    gap: 15px;
 }
 #update{
     display: none;
@@ -128,4 +143,45 @@ a{
 }
 a:hover{
     color: blue;
+}
+#usernameN2,#kcal2,#kcal3,.numbers{
+    color: rgba(32, 172, 4, 0.737);
+    font-weight: 800;
+}
+.meals{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 29%;
+}
+h3{
+    color: rgba(32, 172, 4, 0.737);
+    font-weight: 800;
+    font-size: 14px;
+    
+}
+.recipeImage{
+    margin-top: 10px;
+}
+.recipeButton{
+    margin-bottom: 10px;
+}
+#recipe1,#recipe2,#recipe3{
+    display: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+.ingredientsAndImage{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: scroll;
+
+}
+#ingredients1,#ingredients2,#ingredients3{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    font-size: 14px;
 }
