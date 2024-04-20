@@ -138,6 +138,16 @@ module.exports = {
       res.status(500).json({ error: "Internal server error" });
     }
   },
+  getIngredientsById: async (req, res) => {
+    const id = req.params.id;
+    try {
+      const ingredients = await userModel.getIngredientsById(id);
+      res.json(ingredients);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  },
   calculateForUserById: async (req, res) => {
     const userId = req.params.id;
     try {

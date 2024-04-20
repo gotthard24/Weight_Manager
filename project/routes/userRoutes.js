@@ -12,6 +12,7 @@ router.put("/users/goal/:id", userController.updateGoalById);
 router.put("/users/:id", userController.updateUserById);
 router.get("/recipes", userController.getAllRecipes);
 router.get("/ingredients", userController.getAllIngredients);
+router.get("/ingredients/:id", userController.getIngredientsById);
 router.get("/users/calculate/:id", userController.calculateForUserById);
 router.get("/users/ration/:id", userController.getDailyRationById);
 

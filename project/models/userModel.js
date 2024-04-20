@@ -132,6 +132,15 @@ async function getAllIngredients() {
   }
 }
 
+async function getIngredientsById(id) {
+  try {
+    const users = await food("ingredients").where({recipe_id: id});
+    return users;
+  } catch (error) {
+    throw error;
+  }
+}
+
 async function calculateForUserById(id) {
   try {
     const user = await getDetailsById(id);
@@ -160,36 +169,28 @@ async function calculateForUserById(id) {
 async function getDailyRationById(id) {
   try {
     const calories = await calculateForUserById(id);
-    console.log(calories);
     const recipes = await getAllRecipes()
+    let remainingCalories = calories
     let relevantRecipes = []
     let ration = []
+    let counter = 0
 
     for(recipe of recipes){
-      if((recipe.calories / recipe.servings) <= calories / 3){
+      if((recipe.calories / recipe.servings) <= (calories / 3) + (calories/8) && (recipe.calories / recipe.servings) >= (calories / 3) - (calories/8)){
         relevantRecipes.push(recipe)
       }
     }
 
     do {
-      ration.push(relevantRecipes[Math.floor(Math.random() * relevantRecipes.length)])
-    } while (ration.length < 3);
+      let randInt = Math.floor(Math.random() * relevantRecipes.length)
+      if (!ration.includes(relevantRecipes[randInt])){
+        ration.push(relevantRecipes[randInt])
+        remainingCalories -= (relevantRecipes[randInt].calories / relevantRecipes[randInt].servings)
+      }
+      counter ++
+    } while (ration.length < 3 && counter < 100);
 
-    // console.log(recipes[0].calories);
-    // console.log(recipes[0].servings);
-    
-    return ration
-
-    // const targetCalories = await calculateForUserById(id);
-    // const recipes = await getAllRecipes();
-
-    // // Shuffle the recipes array randomly
-    // const shuffledRecipes = recipes.sort(() => Math.random() - 0.5);
-
-    // // Select the top 3 recipes
-    // const ration = shuffledRecipes.slice(0, 3);
-    
-    // return ration;
+    return {ration, remainingCalories}
   } catch (error) {
     throw error;
   }
@@ -209,4 +210,5 @@ module.exports = {
   getAllIngredients,
   calculateForUserById,
   getDailyRationById,
+  getIngredientsById,
 };
