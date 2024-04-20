@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <title>ЕШЬ,ПОТЕЙ</title>
+</head>
+<body>
+    <div id="container">
+        <h1>LOGO</h1>
+        <section id="login_registration">
+            <article id="login">
+                <h2>Login</h2>
+                <form onsubmit="login(event)">
+                    <div class="input">
+                        <label for="emailL">Email:</label>
+                        <input id="emailL" type="email" placeholder="example@abc.com" name="email" required>
+                    </div>
+                    <div class="input">
+                        <label for="passwordL">Password:</label>
+                        <input id="passwordL" type="password" placeholder="Your password" name="password" required>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit">Log In</button><button onclick="signUpL(event)">Sign Up</button>
+                    </div>
+                </form>
+            </article>
+            <article id="registration">
+                <h2>Registartion</h2>
+                <form onsubmit="registration(event)">
+                    <div class="input">
+                        <label for="usernameR">Username:</label>
+                        <input id="usernameR" type="text" placeholder="Your username" name="username" required>
+                    </div>
+                    <div class="input">
+                        <label for="emailR">Email:</label>
+                        <input id="emailR" type="email" placeholder="example@abc.com" name="email" required>
+                    </div>
+                    <div class="input">
+                        <label for="passwordR">Password:</label>
+                        <input id="passwordR" type="password" placeholder="Your password" name="password" required>
+                    </div>
+                    <div class="input">
+                        <label for="ageR">Age:</label>
+                        <input id="ageR" type="number" placeholder="Your age" name="age" required>
+                    </div>
+                    <div class="input"> 
+                        <p class="sex">Sex:</p>
+                        <input type="radio" id="maleR" name="gender" value="male" required>
+                        <label for="maleR">Male</label><br>
+                        <input type="radio" id="femaleR" name="gender" value="female" required>
+                        <label for="femaleR">Female</label><br>
+                    </div>
+                    <div class="input">
+                        <label for="heightR">Height:</label>
+                        <input id="heightR" type="number" placeholder="Your height" name="height" required>
+                    </div>
+                    <div class="input">
+                        <label for="weightR">Weight:</label>
+                        <input id="weightR" type="number" placeholder="Your weight" name="weight" required>
+                    </div>
+                    <div class="input">
+                        <label for="desiredweightR">Desired weight:</label>
+                        <input id="desiredweightR" type="number" placeholder="Your desired weight" name="desiredweight" required>
+                    </div>
+                    <div id="dropdown_timeR">
+                        <label for="timeR">Choose diet time:</label>
+                        <select id="timeR" name="time" required>
+                            <option value="30">30 days</option>
+                            <option value="90">90 days</option>
+                            <option value="180">180 days</option>
+                            <option value="360">360 days</option>
+                        </select>
+                    </div>
+                    <div id="dropdown_bmrR">
+                        <label for="bmrR">Choose your activity level:</label>
+                        <select id="bmrR" name="bmr" required>
+                            <option value="1.2">Sedentary (little to no exercise)</option>
+                            <option value="1.375">Lightly active (light exercise or sports 1-3 days a week)</option>
+                            <option value="1.55">Moderately active (moderate exercise or sports 3-5 days a week)</option>
+                            <option value="1.725">Very active (hard exercise or sports 6-7 days a week)</option>
+                            <option value="1.9">Extra active (very hard exercise, physical job, or training twice a day)</option>
+                        </select>
+                    </div>
+                    <div class="buttons">
+                        <button onclick="logInR(event)">Log In</button><button type="submit">Sign Up</button>
+                    </div>
+                </form>
+            </article>
+        </section>
+    </div>
+    <section id="main">
+        <nav>
+            <p id="usernameN">Welcome</p>
+            <p id="kcal">Your daily max:</p>
+            <a onclick="change(event)">Change my info</a>
+        </nav>
+        <div id="root">
+        
+        </div>
+        <button id="getMeals" onclick="getMeals(event)">Make my day ration</button>
+    </section>
+    <section id="update">
+        <h2>Change info</h2>
+        <form onsubmit="update(event)">
+            <div class="input">
+                <label for="usernameU">Username:</label>
+                <input id="usernameU" type="text" placeholder="Your username" name="username">
+            </div>
+            <div class="input">
+                <label for="emailU">Email:</label>
+                <input id="emailU" type="email" placeholder="example@abc.com" name="email">
+            </div>
+            <div class="input">
+                <label for="passwordU">Password:</label>
+                <input id="passwordU" type="password" placeholder="Your password" name="password">
+            </div>
+            <div class="input">
+                <label for="ageU">Age:</label>
+                <input id="ageU" type="number" placeholder="Your age" name="age">
+            </div>
+            <div class="input"> 
+                <p class="sex">Sex:</p>
+                <input type="radio" id="maleU" name="gender" value="male">
+                <label for="maleU">Male</label><br>
+                <input type="radio" id="femaleU" name="gender" value="female">
+                <label for="femaleU">Female</label><br>
+            </div>
+            <div class="input">
+                <label for="heightU">Height:</label>
+                <input id="heightU" type="number" placeholder="Your height" name="height">
+            </div>
+            <div class="input">
+                <label for="weightU">Weight:</label>
+                <input id="weightU" type="number" placeholder="Your weight" name="weight">
+            </div>
+            <div class="input">
+                <label for="desiredweightU">Desired weight:</label>
+                <input id="desiredweightU" type="number" placeholder="Your desired weight" name="desiredweight">
+            </div>
+            <div id="dropdown_timeU">
+                <label for="timeU">Choose diet time:</label>
+                <select id="timeU" name="time">
+                    <option value="30">30 days</option>
+                    <option value="90">90 days</option>
+                    <option value="180">180 days</option>
+                    <option value="360">360 days</option>
+                </select>
+            </div>
+            <div id="dropdown_bmrU">
+                <label for="bmrU">Choose your activity level:</label>
+                <select id="bmrU" name="bmr">
+                    <option value="1.2">Sedentary (little to no exercise)</option>
+                    <option value="1.375">Lightly active (light exercise or sports 1-3 days a week)</option>
+                    <option value="1.55">Moderately active (moderate exercise or sports 3-5 days a week)</option>
+                    <option value="1.725">Very active (hard exercise or sports 6-7 days a week)</option>
+                    <option value="1.9">Extra active (very hard exercise, physical job, or training twice a day)</option>
+                </select>
+            </div>
+            <div class="buttons">
+                <button onclick="back(event)">Back</button><button type="submit">Change</button>
+            </div>
+        </form>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>
