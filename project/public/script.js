@@ -150,7 +150,7 @@ async function getMeals(e) {
         <button class="backButton" onclick="backToMain(event)">Back</button>
         </div>`
         root.innerHTML+=`<div class="meals">
-        <h3>${count}.${meal.title}: ${meal.calories} cal</h3>
+        <h3>${count}.${meal.title}: ${meal.calories / meal.servings} cal</h3>
         <img class="recipeImage" width="100%" src="${meal.image}">
         <button class="recipeButton" onclick="getInfo${count}(event)">Get full recipe info</button>
         </div>`
@@ -167,7 +167,7 @@ async function getMeals(e) {
         <button class="backButton" onclick="backToMain(event)">Back</button>
         </div>`
         root.innerHTML+=`<div class="meals">
-        <h3>${count}.${meal.title}: ${meal.calories} cal</h3>
+        <h3>${count}.${meal.title}: ${meal.calories / meal.servings} cal</h3>
         <img class="recipeImage" width="100%" src="${meal.image}">
         <button class="recipeButton" onclick="getInfo${count}(event)">Get full recipe info</button>
         </div>`
