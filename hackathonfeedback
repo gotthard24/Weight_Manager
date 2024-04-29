@@ -1,0 +1,14 @@
+
+Student: Daniel AND Maxim
+Project: User Management System with Express.js and PostgreSQL
+
+The project demonstrates proficiency in building a user management system using Express.js and PostgreSQL.
+Notably, the project effectively implements user registration, login authentication, user details management, and user goal tracking.
+However, consider improving the error handling mechanism and adding more detailed documentation for better understanding and maintenance.
+I think you've done a fantastic job and I can see your progress from the start of the bootcamp!!!!
+Express Middleware: 8/10
+Routing: 9/10
+Database Integration: 9/10
+Error Handling: 6/10
+
+Overall: 8/10
